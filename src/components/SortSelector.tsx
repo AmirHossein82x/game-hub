@@ -4,25 +4,38 @@ import { BsChevronBarDown } from "react-icons/bs";
 import usePlatforms from "../assets/hooks/usePlaltforms";
 import { Platform } from "../assets/hooks/useGames";
 
+interface Props {
+    onSelectSort: (sortItem: string) => void;
+    sortOrder: string | null;
+}
 
+const SortSelector = ({onSelectSort, sortOrder}: Props) => {
 
-const SortSelector = () => {
   const { data, error } = usePlatforms();
   if (error) {
     return null;
   }
+  const sortOrders = [
+    {value: '', label: 'Relevance'},
+    {value: '-name', label: 'Name'},
+    {value: '-released', label: 'Released'},
+    {value: '-added', label: 'data added'},
+    {value: 'created', label: 'created'},
+    {value: '-updated', label: 'updated'},
+    {value: '-rating', label: 'rating'},
+    {value: 'metacritc', label: 'Popularity'}
+  ]
+
+  const currentSortOrder = sortOrders.find((item) => item.value === sortOrder)
+   
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronBarDown></BsChevronBarDown>}>
-        sort
+        Order by: {currentSortOrder?.label || 'Relevent'}
       </MenuButton>
       <MenuList>
-       <MenuItem>item1</MenuItem>
-       <MenuItem>name</MenuItem>
-       <MenuItem>data</MenuItem>
-       <MenuItem>refrence</MenuItem>
-       <MenuItem>saff</MenuItem>
-       <MenuItem>gsgs</MenuItem>
+       {sortOrders.map((item) => <MenuItem key={item.value} value={item.value} onClick={() => onSelectSort(item.value)}>{item.label}</MenuItem>)}
       </MenuList>
     </Menu>
   );
