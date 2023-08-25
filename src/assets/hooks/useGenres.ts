@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import apiClient, { FetchResponse } from "../../services/api-client";
+import APIClient from "../../services/api-client";
 import { CanceledError } from "axios";
 import genres from "../../data/genres";
 
@@ -11,14 +11,14 @@ export interface Genre {
   image_background: string;
 }
 
+const apiClient = new APIClient<Genre>("/genres");
+
 const UseGenres = () =>
   useQuery({
     queryKey: ["genres"],
-    queryFn: () =>
-      apiClient.get<FetchResponse<Genre>>("/genres").then((res) => res.data),
-      staleTime: 24 * 60 * 60 * 1000, // 24 hours
-      initialData: {count: genres.length, results: genres}
-
+    queryFn: apiClient.getAll,
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    initialData: { count: genres.length, results: genres },
   });
 
 export default UseGenres;
