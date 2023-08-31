@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-import APIClient from "../../services/api-client";
-import { CanceledError } from "axios";
+import ms from 'ms';
 import genres from "../../data/genres";
+import APIClient from "../../services/api-client";
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export interface Genre {
   id: number;
@@ -17,8 +16,9 @@ const UseGenres = () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
-    staleTime: 24 * 60 * 60 * 1000, // 24 hours
-    initialData: { count: genres.length, results: genres },
+    // staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    staleTime: ms('24h'),
+    initialData: { count: genres.length, results: genres, next: null },
   });
 
 export default UseGenres;
