@@ -8,7 +8,7 @@ import {
   Spinner
 } from "@chakra-ui/react";
 import { Fragment } from "react";
-import UseGenres from "../assets/hooks/useGenres";
+import UseGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
 

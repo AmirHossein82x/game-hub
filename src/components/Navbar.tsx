@@ -1,8 +1,7 @@
-import { HStack, Image, Text } from '@chakra-ui/react'
-import logo from '../assets/logo.webp'
-import ColorModeSwitch from './ColorModeSwitch'
-import SeachInput from './SeachInput'
-import useGameQueryStore from '../store';
+import { HStack, Image } from '@chakra-ui/react';
+import logo from '../assets/logo.webp';
+import ColorModeSwitch from './ColorModeSwitch';
+import SeachInput from './SeachInput';
 
 
 const Navbar = () => {

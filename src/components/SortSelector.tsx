@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronBarDown } from "react-icons/bs";
-import usePlatforms from "../assets/hooks/usePlaltforms";
+import usePlatforms from "../hooks/usePlaltforms";
 import useGameQueryStore from "../store";
 
 const SortSelector = () => {
